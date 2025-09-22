@@ -1,4 +1,10 @@
 <% layout("/layouts/boilerplate.ejs") %>
+
+<script>
+  const mapToken = "<%= process.env.MAP_TOKEN %>";
+  const listing = <%- JSON.stringify(listing) %>;
+</script>
+
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-8 offset-2">
@@ -51,7 +57,7 @@
     novalidate
     class="needs-validation"
   >
-    <div class="mt-3 mb-3">
+    <div class="mt-3">
       <label for="rating" class="form-labal">Rating</label>
       <fieldset class="starability-slot">
         <input
@@ -76,7 +82,7 @@
       </fieldset>
     </div>
 
-    <div class="mt-3 mb-3">
+    <div class="mb-3">
       <label for="comment" class="form-labal">Comments</label>
       <textarea
         name="review[comment]"
@@ -93,6 +99,7 @@
   <% } %>
 </div>
 
+<% if (listing.reviews.length > 0 ) {%>
 <div class="col-8 offset-3 mb-3">
   <p><b>All Reviews</b></p>
   <div class="row">
@@ -120,3 +127,11 @@
     <% } %>
   </div>
 </div>
+<% } %>
+
+<div class="col-8 offset-3 mb-3">
+  <h4>Where you’ll be</h4>
+  <div id="map"></div>
+</div>
+
+<script src="/js/map.js"></script>
